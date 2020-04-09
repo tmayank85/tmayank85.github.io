@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>congrats</title>
+	<meta http-equiv="Content-Type" content="text/html"charset="utf-8"/>
+	<link rel="stylesheet" type="text/css" href="sing up.css"/>
+	<!-- <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=play"> -->
+</head>
+
+<script>
+function signup(){
+	var fname = document.getElementById('firstname').value;
+	var lname = document.getElementById('lastname').value;
+	var email = document.getElementById('email').value;
+
+	if (fname !="" || lname != "" || email != ""){
+	alert("Signup Successfully "+fname+" "+lname+". you will redirect to home page now");
+	window.location.href="12.html";
+}
+else{
+	alert("fill the form first");
+}
+
+}
+</script>
+
+<body>
+                    <h1><center><font size = "7"><font color = "Black">ONLINE  EXAMINIATION SYSTEM</font></font></center></h1>
+	<center><div class="signup">
+		<form>
+			<h2 style="color:Black;">Sign up</h2>
+			<input type="text" id="firstname" name="username" placeholder="Firstname" required>
+			<br><br>
+			<input type="text" id="lastname" name="username" placeholder="last name" required><br><br>
+
+			<input type="password" name="pass" placeholder="password" required>
+			<br><br>
+			<input type="password" name="pass" placeholder="Confirm password" required><br><br>
+			<input type="email" id="email" name="Email" placeholder="Email address" required>
+			<br><br>
+			<input type="submit" onclick="signup()" value="Signup"><br><br>
+			<div id="msg">
+				<!-- nothing for now -->
+			</div></center>
+
+		</form>

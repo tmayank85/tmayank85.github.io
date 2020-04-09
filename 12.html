@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>regirtation form</title>
+                    <link rel="stylesheet" type="text/css" href="12.css">
+<script>
+function start_test(){
+	var ch = document.getElementById("Program_test").value;
+	alert("Your "+ch+" test will start in few sec.")
+	if (ch == "Computer science and Engineering"){
+		window.location.href="quiz.html";
+	}
+	else if (ch == "Electrical Communication and Engineering"){
+		window.location.href="quizece.html";
+	}
+	else if (ch == "Fine Arts"){
+		window.location.href="kiran1.html";
+	}
+}
+</script>
+</head>
+<body>
+<h1><center><font size = "7"><font color = "Green">ONLINE  EXAMNIATION SYSTEM</font></font></center></h1>
+<h1><center><font size = "5"><font color = "Black">REGISTRATION</font></font></center></h1><br>
+<div id="menu" algin="middle" >
+<center><a href="12.html" style="margin-right:0px: font-size:13px;font-family: Tohama,Geneva,Sans-serif;">Registration</a>   |
+<a href="a" style="margin-right:0px: font-size:13px;font-family: Tohama,Geneva,Sans-serif;">Examination rules</a>         |
+<a href="a" style="margin-right:0px: font-size:13px;font-family: Tohama,Geneva,Sans-serif;">Result</a>                                |
+<a href="a" style="margin-right:0px: font-size:13px;font-family: Tohama,Geneva,Sans-serif;">Schedule</a>                           |
+<a href="231.html" style="margin-right:0px: font-size:13px;font-family: Tohama,Geneva,Sans-serif;">Objective</a>                          |
+<a href="23.html" style="margin-right:0px: font-size:13px;font-family: Tohama,Geneva,Sans-serif;">Subjective</a>                         |
+<a href="login1.html" style="margin-right:0px: font-size:13px;font-family: Tohama,Geneva,Sans-serif;">Logout</a>
+<div class="contact-form">
+	<form action>
+                                           <label for="Enrollment No">Enrollment No</label>
+		<input type="text" name="Enrollment No" placeholder="Enrollment No...">
+                         <label for="Name">Your Name</label>
+		<input type="text" name="full Name" placeholder="Your Name...">
+		<label for="email">Your Email</label>
+		<input type="text" name="Email" placeholder="Your Email...">
+		<label for="program_test">programm</label>
+		<select  id="Program_test">
+			<option value="Computer science and Engineering" >CSE</option>
+			<option value="Electrical Communication and Engineering">ECE</option>
+			<option value="Fine Arts">FA</option>
+		</select>
+<label for="study Course code">Study course code</label>
+		<select id="Study course code">
+			<option value="CSE">Computer science and Engineering</option>
+			<option value="ECE">Electrical Communication and Engineering</option>
+			<option value="FA">Fine Arts</option>
+		</select>
+
+                                          <label for="password">Password</label>
+                                          <input type="password"  name="password" placeholder="password">
+                                          <label for="Confirm password">Confirm password</label>
+                                          <input type="password" name="Confirm password" placeholder="Confirm password">
+                              <input type="button" onclick="start_test()" value="submit">
+	</form>
+</body>
+</html>

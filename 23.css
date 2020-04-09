@@ -1,0 +1,26 @@
+body
+{
+	font-family:Century Schoolbook;
+	color: black;
+	background:url(13.jpg);
+	background-size:cover;
+}
+input[type=button]
+{
+	border:none;
+	width: 290px;
+	background: black;
+	color: white;
+	font -size: 16px;
+	line-height: 25px;
+	padding: 10px 0;
+	border-radius: 25px;
+	cursor: pointer;
+
+}
+ 
+input[type=button]:hover
+{
+	color: #fff;
+	background-color: black;
+}

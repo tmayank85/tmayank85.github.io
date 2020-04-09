@@ -1,0 +1,68 @@
+body
+{
+	font-family: Tahoma,Geneva,Sans-serif;
+	color: black;
+	background:url(10.png);
+	background-size:cover;
+}
+.signin
+{
+	background:rgba(44,62,80,0.7);
+	padding:40px;
+	width:250px;
+                     color:red;
+	margin:center;
+	margin-top:160px;
+	height:300px;
+	margin-left:20px;
+                    
+}
+form
+{
+	width:240px;
+	text-align:center;
+
+}
+input
+{
+	width:240px;
+	text-align:center;
+	background: transparent;
+	border: none;
+	border-bottom: 1px solid black;
+	font-family: 'play',Sans-serif;
+	font-size: 16px;
+	font-weight: 200px;
+	padding: 10px 0;
+	transition: border 1.5s;
+	outline:none;
+	color:white;
+
+}
+input[type=button]
+{
+	border:none;
+	width: 190px;
+	background :black;
+	color:white;
+	font -size: 16px;
+	line-height: 25px;
+	padding: 10px 0;
+	border-radius: 25px;
+	cursor: pointer;
+}
+ 
+input[type=button]:hover
+{
+	color: #fff;
+	background-color: black;
+}
+h2
+{
+	color: white;
+}
+a
+{
+	color:white;
+	text-decoration: blink;
+}
