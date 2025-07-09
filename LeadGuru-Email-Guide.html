@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="hi" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Marketing Ka Sahi Tarika</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Mukta:wght@400;700&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Calm Harmony (#FFFBF5, #3B82F6, #F97316, #1F2937) -->
+    <!-- Application Structure Plan: A single-page, vertical scrolling application designed for a narrative user flow. It starts with a hook (the problem), explains why (the reasons), presents the solution (professional stack), introduces our software's capabilities, provides an interactive visualization of the impact (Chart.js comparison), gives a clear action plan (accordion step-by-step guide), debunks myths, and concludes with a checklist. This structure guides the non-technical user from understanding the problem to feeling empowered with a solution, which is more effective than a static, paginated report. A sticky navigation bar aids non-linear exploration. -->
+    <!-- Visualization & Content Choices: 
+        - Report Info: Gmail vs SMTP deliverability. -> Goal: Compare. -> Viz: Interactive Donut Chart. -> Interaction: Button click updates data. -> Justification: Visually dramatic, instantly shows value. -> Library: Chart.js/Canvas.
+        - Report Info: Problem flowchart. -> Goal: Organize/Explain. -> Viz: Styled HTML/CSS Flexbox cards with arrows. -> Interaction: Scroll-based fade-in. -> Justification: Simpler and more web-native than a static image, maintains flow. -> Library/Method: Tailwind CSS.
+        - Report Info: Step-by-step guide. -> Goal: Organize/Instruct. -> Viz: Accordion. -> Interaction: Click to expand/collapse. -> Justification: Reduces initial information overload, allows users to focus on one step at a time. -> Library/Method: Vanilla JS + Tailwind.
+        - Report Info: Toolbox analogy. -> Goal: Compare. -> Viz: Side-by-side cards with icons. -> Justification: Clear, simple visual metaphor. -> Library/Method: HTML/CSS.
+        - Report Info: Our software features. -> Goal: Inform/Promote. -> Viz: Animated list with icons/emojis. -> Interaction: Fade-in on scroll. -> Justification: Clearly presents benefits without overwhelming, aligns with cartoonish style. -> Library/Method: HTML/CSS/JS.
+    -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #FFFBF5;
+            color: #1F2937;
+        }
+        .font-mukta {
+            font-family: 'Mukta', sans-serif;
+        }
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-in-out;
+        }
+    </style>
+</head>
+<body class="bg-[#FFFBF5]">
+
+    <!-- Header & Navigation -->
+    <header id="header" class="bg-[#FFFBF5]/80 backdrop-blur-sm sticky top-0 z-50 shadow-sm">
+        <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
+            <div class="text-2xl font-bold text-blue-600 font-mukta">
+                LeadGuru - Email<span class="text-orange-500">Guide</span>
+            </div>
+            <div class="hidden md:flex space-x-8">
+                <a href="#problem" class="text-gray-700 hover:text-blue-600 transition">Problem Kyu Hai?</a>
+                <a href="#solution" class="text-gray-700 hover:text-blue-600 transition">Solution Kya Hai?</a>
+                <a href="#guide" class="text-gray-700 hover:text-blue-600 transition">Kaise Kare?</a>
+                <a href="#myths" class="text-gray-700 hover:text-blue-600 transition">Myths</a>
+            </div>
+            <div class="md:hidden">
+                <button id="menu-btn" class="text-gray-700 focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                </button>
+            </div>
+        </nav>
+        <div id="mobile-menu" class="hidden md:hidden">
+            <a href="#problem" class="block py-2 px-6 text-sm text-gray-700 hover:bg-blue-50">Problem Kyu Hai?</a>
+            <a href="#solution" class="block py-2 px-6 text-sm text-gray-700 hover:bg-blue-50">Solution Kya Hai?</a>
+            <a href="#guide" class="block py-2 px-6 text-sm text-gray-700 hover:bg-blue-50">Kaise Kare?</a>
+            <a href="#myths" class="block py-2 px-6 text-sm text-gray-700 hover:bg-blue-50">Myths</a>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-6">
+        <!-- Hero Section -->
+        <section class="text-center py-16 md:py-24">
+            <h1 class="text-4xl md:text-6xl font-bold font-mukta text-blue-600">Email Marketing Ka Sahi Tarika</h1>
+            <p class="mt-4 text-lg md:text-2xl font-mukta text-gray-600 max-w-3xl mx-auto">Gmail se 1000 email bhejoge? <span class="text-orange-500 font-bold">900 spam mein jaayenge!</span> Yeh kyun hota hai aur solution kya hai?</p>
+            <div class="mt-12 grid grid-cols-1 md:grid-cols-2 gap-8 items-center max-w-4xl mx-auto">
+                <div class="bg-white p-6 rounded-xl shadow-lg border border-red-200">
+                    <div class="text-6xl text-center">🙁</div>
+                    <h3 class="text-2xl font-bold mt-2 font-mukta">Gmail → <span class="text-red-500">Spam</span></h3>
+                    <p class="mt-2 text-gray-500">Aapke zaroori emails customers tak pahunch hi nahi rahe.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-lg border border-green-200">
+                    <div class="text-6xl text-center">😃</div>
+                    <h3 class="text-2xl font-bold mt-2 font-mukta">SMTP → <span class="text-green-500">Inbox</span></h3>
+                    <p class="mt-2 text-gray-500">Har email seedha inbox mein, result guaranteed.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Problem Section -->
+        <section id="problem" class="py-16 md:py-24">
+            <div class="text-center">
+                <h2 class="text-3xl md:text-4xl font-bold font-mukta">Gmail Se Kyu Nahi Chalega?</h2>
+                <p class="mt-2 text-lg text-gray-600 max-w-2xl mx-auto">Aapko lagta hai khareedi hui Gmail ID se kaam ho raha hai, par asliyat mein aap apna nuksaan kar rahe hain. Iske 3 bade kaaran hain.</p>
+            </div>
+
+            <div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="fade-in bg-white p-6 rounded-xl shadow-md border border-gray-200">
+                    <div class="flex items-center">
+                        <span class="text-3xl mr-4">🚫</span>
+                        <h3 class="text-xl font-bold">No SPF/DKIM Stamp</h3>
+                    </div>
+                    <p class="mt-3 text-gray-600">Gmail accounts (chahe free ho ya khareede hue) personal use ke liye hote hain, official nahi. Bina SPF/DKIM security stamp ke, email servers aap par trust nahi karte aur aapke emails ko suspicious maante hain.</p>
+                </div>
+                <div class="fade-in bg-white p-6 rounded-xl shadow-md border border-gray-200">
+                     <div class="flex items-center">
+                        <span class="text-3xl mr-4">📉</span>
+                        <h3 class="text-xl font-bold">Shared IP Address</h3>
+                    </div>
+                    <p class="mt-3 text-gray-600">Aap usi address se email bhej rahe hain jahan se 1000 aur log, jinmein se kuch spammers bhi ho sakte hain. Ek ki galti, saza sabko milti hai.</p>
+                </div>
+                 <div class="fade-in bg-white p-6 rounded-xl shadow-md border border-gray-200">
+                     <div class="flex items-center">
+                        <span class="text-3xl mr-4">🔥</span>
+                        <h3 class="text-xl font-bold">Purchased Lists</h3>
+                    </div>
+                    <p class="mt-3 text-gray-600">Khareedi hui list mein 'spam traps' hote hain. Ek galat email par bhejte hi aapka domain blacklist ho jaata hai aur saari mehnat bekaar.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Solution Section with Interactive Chart -->
+        <section id="solution" class="py-16 md:py-24 bg-blue-50 rounded-2xl">
+            <div class="text-center">
+                <h2 class="text-3xl md:text-4xl font-bold font-mukta">Professional Email Stack: The Real Solution</h2>
+                <p class="mt-2 text-lg text-gray-600 max-w-2xl mx-auto">Chhuri se jameen nahi khod sakte, uske liye auzaar chahiye. Gmail personal kaam ke liye hai, business ke liye professional 'Email Stack' use karein.</p>
+            </div>
+            
+            <div class="mt-12 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                <div class="space-y-6">
+                    <div class="fade-in flex items-start">
+                        <div class="flex-shrink-0 h-10 w-10 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold">1</div>
+                        <div class="ml-4">
+                            <h3 class="text-xl font-bold">Custom Domain (@apka.business)</h3>
+                            <p class="text-gray-600">Apni pehchaan banayein. Professional dikhein aur trust jeetein.</p>
+                        </div>
+                    </div>
+                     <div class="fade-in flex items-start">
+                        <div class="flex-shrink-0 h-10 w-10 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold">2</div>
+                        <div class="ml-4">
+                            <h3 class="text-xl font-bold">SMTP Service (The Post Office)</h3>
+                            <p class="text-gray-600">Yeh aapka personal post office hai jo guaranteed delivery deta hai. Jaise Mailgun ya Amazon SES.</p>
+                        </div>
+                    </div>
+                     <div class="fade-in flex items-start">
+                        <div class="flex-shrink-0 h-10 w-10 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold">3</div>
+                        <div class="ml-4">
+                            <h3 class="text-xl font-bold">Domain Warm-Up</h3>
+                            <p class="text-gray-600">Naye connection se dheere-dheere vishwas banayein, ekdum se attack na karein.</p>
+                        </div>
+                    </div>
+                     <div class="fade-in flex items-start">
+                        <div class="flex-shrink-0 h-10 w-10 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold">4</div>
+                        <div class="ml-4">
+                            <h3 class="text-xl font-bold">List Cleaning</h3>
+                            <p class="text-gray-600">Sirf unko email karein jo sunna chahte hain. Kachra saaf karein, result behtar karein.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="fade-in">
+                    <div class="bg-white p-6 rounded-xl shadow-xl border border-gray-200 text-center">
+                        <h3 class="text-2xl font-bold font-mukta mb-4">Apni ankhon se dekho farak!</h3>
+                        <div class="chart-container relative h-[300px] w-full max-w-sm mx-auto">
+                            <canvas id="deliveryChart"></canvas>
+                        </div>
+                        <button id="switchBtn" class="mt-6 bg-orange-500 text-white font-bold py-3 px-8 rounded-full hover:bg-orange-600 transition-transform transform hover:scale-105">
+                            Professional Setup Dekho →
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- New Section: Our Software's Contribution -->
+            <div class="mt-20 text-center">
+                <h2 class="text-3xl md:text-4xl font-bold font-mukta">Hamara Software Kya Karega Aapke Liye?</h2>
+                <p class="mt-2 text-lg text-gray-600 max-w-2xl mx-auto">Hum aapke email marketing ko aasan aur asardaar banate hain. Dekhiye kaise:</p>
+            </div>
+
+            <div class="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
+                <div class="fade-in bg-white p-6 rounded-xl shadow-md border border-gray-200 flex items-start">
+                    <span class="text-3xl mr-4">📧</span>
+                    <div>
+                        <h3 class="text-xl font-bold">Custom Domain Emails</h3>
+                        <p class="mt-1 text-gray-600">Aapke apne domain name se emails bhejenge, professional look aur trust ke liye.</p>
+                    </div>
+                </div>
+                <div class="fade-in bg-white p-6 rounded-xl shadow-md border border-gray-200 flex items-start">
+                    <span class="text-3xl mr-4">🧹</span>
+                    <div>
+                        <h3 class="text-xl font-bold">Clean Email IDs</h3>
+                        <p class="mt-1 text-gray-600">Hum aapki email list ko clean karte hain, jisse bounce rate kam ho aur emails inbox tak pahunche.</p>
+                    </div>
+                </div>
+                <div class="fade-in bg-white p-6 rounded-xl shadow-md border border-gray-200 flex items-start">
+                    <span class="text-3xl mr-4">📈</span>
+                    <div>
+                        <h3 class="text-xl font-bold">Scheduled Warm-Up</h3>
+                        <p class="mt-1 text-gray-600">Hum aapke liye automated warm-up sessions schedule karte hain, emails dheere-dheere badhate hue.</p>
+                    </div>
+                </div>
+                <div class="fade-in bg-white p-6 rounded-xl shadow-md border border-gray-200 flex items-start">
+                    <span class="text-3xl mr-4">🔄</span>
+                    <div>
+                        <h3 class="text-xl font-bold">Consistent Activity</h3>
+                        <p class="mt-1 text-gray-600">Email activity ko consistent rakhte hain, jisse email providers aapko reliable sender maane.</p>
+                    </div>
+                </div>
+                <div class="fade-in bg-white p-6 rounded-xl shadow-md border border-gray-200 flex items-start">
+                    <span class="text-3xl mr-4">🎲</span>
+                    <div>
+                        <h3 class="text-xl font-bold">Email ID Rotation</h3>
+                        <p class="mt-1 text-gray-600">Spam detection se bachne ke liye hum email IDs rotate karte hain.</p>
+                    </div>
+                </div>
+                <div class="fade-in bg-white p-6 rounded-xl shadow-md border border-gray-200 flex items-start">
+                    <span class="text-3xl mr-4">↩️</span>
+                    <div>
+                        <h3 class="text-xl font-bold">Automated Follow-ups</h3>
+                        <p class="mt-1 text-gray-600">Non-repliers ko 2-3 follow-ups bhejte hain, reply rate badhane ke liye.</p>
+                    </div>
+                </div>
+                <div class="fade-in bg-white p-6 rounded-xl shadow-md border border-gray-200 flex items-start">
+                    <span class="text-3xl mr-4">📊</span>
+                    <div>
+                        <h3 class="text-xl font-bold">Track Replies & Bounce</h3>
+                        <p class="mt-1 text-gray-600">Hum replies aur bounce rate ko track karte hain, jisse aapko clear insights milein.</p>
+                    </div>
+                </div>
+                <div class="fade-in bg-white p-6 rounded-xl shadow-md border border-gray-200 flex items-start">
+                    <span class="text-3xl mr-4">🚫</span>
+                    <div>
+                        <h3 class="text-xl font-bold">Unsubscribe Feature</h3>
+                        <p class="mt-1 text-gray-600">Uninterested logo ko email bhejna band karne ke liye unsubscribe feature, spam chances kam karne mein madad karta hai.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Step-by-Step Guide -->
+        <section id="guide" class="py-16 md:py-24">
+            <div class="text-center">
+                <h2 class="text-3xl md:text-4xl font-bold font-mukta">Step-by-Step Guide: Kaise Kare?</h2>
+                <p class="mt-2 text-lg text-gray-600 max-w-2xl mx-auto">Chaar aasan steps mein apna professional email setup complete karein.</p>
+            </div>
+            
+            <div class="mt-12 max-w-3xl mx-auto space-y-4">
+                <!-- Accordion Item 1 -->
+                <div class="accordion-item bg-white rounded-lg shadow-sm border border-gray-200">
+                    <button class="accordion-header w-full text-left p-5 flex justify-between items-center">
+                        <span class="text-xl font-bold flex items-center"><span class="text-2xl mr-3">📝</span> Step 1: Apna Domain Khareedo</span>
+                        <span class="arrow text-2xl transform transition-transform">+</span>
+                    </button>
+                    <div class="accordion-content">
+                        <div class="p-5 pt-0 text-gray-600">
+                            <p>Sabse pehle, ek domain name khareedo jo aapke business se match karta ho. Godaddy ya Namecheap jaise platforms par yeh bahut saste mil jaate hain, lagbhag Rs. 500 per saal mein.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Accordion Item 2 -->
+                <div class="accordion-item bg-white rounded-lg shadow-sm border border-gray-200">
+                    <button class="accordion-header w-full text-left p-5 flex justify-between items-center">
+                        <span class="text-xl font-bold flex items-center"><span class="text-2xl mr-3">🔧</span> Step 2: SPF/DKIM Setup Karo</span>
+                        <span class="arrow text-2xl transform transition-transform">+</span>
+                    </button>
+                    <div class="accordion-content">
+                        <div class="p-5 pt-0 text-gray-600">
+                           <p>Apne domain ke DNS settings mein jaakar SPF aur DKIM records add karo. Yeh thoda technical lag sakta hai, lekin aapke SMTP service provider (jaise Mailgun) iske liye poori guide dete hain. Yeh one-time setup hai.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Accordion Item 3 -->
+                <div class="accordion-item bg-white rounded-lg shadow-sm border border-gray-200">
+                    <button class="accordion-header w-full text-left p-5 flex justify-between items-center">
+                        <span class="text-xl font-bold flex items-center"><span class="text-2xl mr-3">🐢</span> Step 3: Domain Warm-Up Karo</span>
+                        <span class="arrow text-2xl transform transition-transform">+</span>
+                    </button>
+                    <div class="accordion-content">
+                        <div class="p-5 pt-0 text-gray-600">
+                            <p>Naye domain se ekdum se hazaron emails na bhejein. Dheere-dheere quantity badhayein. Ek sample plan:</p>
+                            <ul class="list-disc list-inside mt-2 space-y-1">
+                                <li><strong>Week 1:</strong> 50 emails/day</li>
+                                <li><strong>Week 2:</strong> 100 emails/day</li>
+                                <li><strong>Week 3:</strong> 200 emails/day</li>
+                                <li><strong>Week 4:</strong> 500 emails/day</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!-- Accordion Item 4 -->
+                <div class="accordion-item bg-white rounded-lg shadow-sm border border-gray-200">
+                    <button class="accordion-header w-full text-left p-5 flex justify-between items-center">
+                        <span class="text-xl font-bold flex items-center"><span class="text-2xl mr-3">✂️</span> Step 4: List Clean Rakho</span>
+                        <span class="arrow text-2xl transform transition-transform">+</span>
+                    </button>
+                    <div class="accordion-content">
+                        <div class="p-5 pt-0 text-gray-600">
+                            <p>Bhejne se pehle, apni list ko Zerobounce ya Hunter.io jaise tool se verify karein. Kabhi bhi `info@`, `admin@` jaise role-based addresses par cold email na karein. Isse aapki bounce rate kam hogi aur reputation acchi rahegi.</p>
+                        </div>
+                    </div>
+                </div>
+                 <!-- Accordion Item 5 -->
+                <div class="accordion-item bg-white rounded-lg shadow-sm border border-gray-200">
+                    <button class="accordion-header w-full text-left p-5 flex justify-between items-center">
+                        <span class="text-xl font-bold flex items-center"><span class="text-2xl mr-3">📊</span> Step 5: Track and Improve</span>
+                        <span class="arrow text-2xl transform transition-transform">+</span>
+                    </button>
+                    <div class="accordion-content">
+                        <div class="p-5 pt-0 text-gray-600">
+                            <p>Apne email campaigns ki performance track karna bahut zaroori hai. Dekho kitne emails open hue, kitne click hue. Mailchimp ya SendGrid jaise tools aapko detailed analytics dete hain. Isse aap apni strategy ko improve kar sakte ho.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Myths Section -->
+        <section id="myths" class="py-16 md:py-24">
+            <div class="text-center">
+                <h2 class="text-3xl md:text-4xl font-bold font-mukta">Galatfehmi Dur Karo</h2>
+                <p class="mt-2 text-lg text-gray-600">Email marketing ke baare mein kuch aam myths.</p>
+            </div>
+            <div class="mt-12 max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="fade-in bg-red-50 p-6 rounded-lg border border-red-200">
+                    <h3 class="font-bold text-lg text-red-800">❌ Myth: "Naya software lene se spam fix ho jaayega."</h3>
+                    <p class="mt-2 text-red-700"><strong>Sach:</strong> Koi bhi software jaadu nahi hai. Asli cheez aapka domain reputation, warm-up plan, aur list quality hai. Software sirf ek tool hai.</p>
+                </div>
+                 <div class="fade-in bg-red-50 p-6 rounded-lg border border-red-200">
+                    <h3 class="font-bold text-lg text-red-800">❌ Myth: "Khareedi hui Gmail ID se kaam chal jaayega."</h3>
+                    <p class="mt-2 text-red-700"><strong>Sach:</strong> Google aapse zyaada smart hai. Chahe aap free ID use karein ya khareedi hui, Google aapki IP, device, aur sending patterns ko track karta hai. Yeh short-term hack long-term mein account block karwa dega.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white">
+        <div class="container mx-auto px-6 py-12">
+            <div class="text-center">
+                <h2 class="text-2xl font-bold font-mukta">Ready to Start Smart Email Marketing?</h2>
+                <p class="mt-2 max-w-xl mx-auto">In cheezo ko hamesha yaad rakhein:</p>
+                <div class="mt-6 inline-block text-left space-y-2">
+                    <p>✅ Apna domain khareedo</p>
+                    <p>✅ SMTP setup kiya</p>
+                    <p>✅ 30-day warm-up plan banaya</p>
+                    <p>✅ List clean ki</p>
+                </div>
+                <p class="mt-8 text-xl font-mukta text-orange-400">"Email marketing mein jaldi nahi, <span class="font-bold">smart kaam</span> chalta hai! ✨"</p>
+            </div>
+        </div>
+    </footer>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+
+    // Mobile Menu Toggle
+    const menuBtn = document.getElementById('menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    menuBtn.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+    });
+
+    // Close mobile menu on link click
+    mobileMenu.addEventListener('click', (e) => {
+        if (e.target.tagName === 'A') {
+            mobileMenu.classList.add('hidden');
+        }
+    });
+
+    // Accordion Logic
+    const accordionItems = document.querySelectorAll('.accordion-item');
+    accordionItems.forEach(item => {
+        const header = item.querySelector('.accordion-header');
+        const content = item.querySelector('.accordion-content');
+        const arrow = header.querySelector('.arrow');
+        
+        header.addEventListener('click', () => {
+            // Close all other accordions
+            accordionItems.forEach(otherItem => {
+                if (otherItem !== item) {
+                    otherItem.querySelector('.accordion-content').style.maxHeight = '0px';
+                    otherItem.querySelector('.arrow').classList.remove('rotate-45');
+                }
+            });
+            
+            // Toggle current accordion
+            if (content.style.maxHeight && content.style.maxHeight !== '0px') {
+                content.style.maxHeight = '0px';
+                arrow.classList.remove('rotate-45');
+            } else {
+                content.style.maxHeight = content.scrollHeight + 'px';
+                arrow.classList.add('rotate-45');
+            }
+        });
+    });
+
+    // Fade-in on Scroll
+    const faders = document.querySelectorAll('.fade-in');
+    const appearOptions = {
+        threshold: 0.2,
+        rootMargin: "0px 0px -50px 0px"
+    };
+    const appearOnScroll = new IntersectionObserver(function(entries, appearOnScroll) {
+        entries.forEach(entry => {
+            if (!entry.isIntersecting) {
+                return;
+            } else {
+                entry.target.classList.add('visible');
+                appearOnScroll.unobserve(entry.target);
+            }
+        });
+    }, appearOptions);
+    faders.forEach(fader => {
+        appearOnScroll.observe(fader);
+    });
+
+    // Chart.js Logic
+    const ctx = document.getElementById('deliveryChart').getContext('2d');
+    const switchBtn = document.getElementById('switchBtn');
+    let deliveryChart;
+    let isGmail = true;
+
+    const gmailData = {
+        labels: ['Spam', 'Inbox'],
+        datasets: [{
+            label: 'Gmail Delivery',
+            data: [90, 10],
+            backgroundColor: ['#EF4444', '#22C55E'],
+            borderColor: '#FFFBF5',
+            borderWidth: 4,
+            hoverOffset: 4
+        }]
+    };
+
+    const smtpData = {
+        labels: ['Inbox', 'Spam', 'Bounced'],
+        datasets: [{
+            label: 'Professional SMTP Delivery',
+            data: [70, 20, 10],
+            backgroundColor: ['#22C55E', '#F97316', '#6B7280'],
+            borderColor: '#FFFBF5',
+            borderWidth: 4,
+            hoverOffset: 4
+        }]
+    };
+
+    const chartConfig = {
+        type: 'doughnut',
+        data: gmailData,
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            cutout: '60%',
+            plugins: {
+                legend: {
+                    position: 'bottom',
+                    labels: {
+                        font: {
+                            family: 'Poppins'
+                        }
+                    }
+                },
+                tooltip: {
+                    callbacks: {
+                        label: function(context) {
+                            return `${context.label}: ${context.raw}%`;
+                        }
+                    }
+                }
+            }
+        }
+    };
+
+    deliveryChart = new Chart(ctx, chartConfig);
+
+    switchBtn.addEventListener('click', () => {
+        if (isGmail) {
+            deliveryChart.data = smtpData;
+            switchBtn.textContent = 'Gmail Wala Setup Dekho ←';
+            switchBtn.classList.remove('bg-orange-500', 'hover:bg-orange-600');
+            switchBtn.classList.add('bg-blue-600', 'hover:bg-blue-700');
+        } else {
+            deliveryChart.data = gmailData;
+            switchBtn.textContent = 'Professional Setup Dekho →';
+            switchBtn.classList.remove('bg-blue-600', 'hover:bg-blue-700');
+            switchBtn.classList.add('bg-orange-500', 'hover:bg-orange-600');
+        }
+        isGmail = !isGmail;
+        deliveryChart.update();
+    });
+
+    // Smooth scrolling for nav links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href');
+            const targetElement = document.querySelector(targetId);
+            if(targetElement){
+                // Adjust for sticky header height
+                const headerOffset = document.getElementById('header').offsetHeight;
+                const elementPosition = targetElement.getBoundingClientRect().top;
+                const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+        
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: "smooth"
+                });
+            }
+        });
+    });
+
+});
+</script>
+
+</body>
+</html>
